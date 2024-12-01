@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import './register.css';
 
+import { useNavigate } from 'react-router-dom'; 
+
+
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +61,7 @@ const Register = () => {
             placeholder="Enter your password" 
           />
         </div>
-        <button className="register-button">
+        <button className="register-button" onClick={() => navigate('/login')}>
           Register
         </button>
       </form>

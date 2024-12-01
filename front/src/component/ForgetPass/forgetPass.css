@@ -1,0 +1,76 @@
+/* Conteneur principal */
+.forget-pass-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  /* Titre */
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Texte */
+  p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 400px;
+  }
+  
+  /* Formulaire */
+  .forget-pass-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    color: #333;
+  }
+  
+  /* Groupes de champs */
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  label {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  /* Bouton */
+  .send-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #ff758c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: #e06478;
+  }
+  

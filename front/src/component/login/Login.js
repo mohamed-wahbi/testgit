@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import './login.css';
+import { useNavigate } from 'react-router-dom'; 
+
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +47,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
         </div>
-        <button type="submit" className="login-button">
+        <button type="submit" className="login-button" onClick={()=>navigate("/home")}>
           Login
         </button>
       </form>
