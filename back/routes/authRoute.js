@@ -6,6 +6,6 @@ router.post('/register', registerCtrl);
 
 router.post('/login', loginCtrl);
 
-router.get("/getone", getUserByEmail)
+router.post("/getone", getUserByEmail)
 
 module.exports = router;

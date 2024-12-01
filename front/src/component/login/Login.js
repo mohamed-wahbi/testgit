@@ -40,7 +40,6 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1>Login</h1>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
@@ -69,6 +68,7 @@ const Login = () => {
         <button type="submit" className="login-button">
           Login
         </button>
+        {errorMessage?<div><p style={{"color":"red"}}>{errorMessage} Invalid email or password <span onClick={()=>navigate("/forget-pass")} style={{"color":"blue","cursor":"pointer"}}>reset password ...</span></p> </div>:null }
       </form>
     </div>
   );
