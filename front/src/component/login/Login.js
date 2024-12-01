@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './login.css';
-import { useNavigate } from 'react-router-dom'; 
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -12,27 +13,45 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log('Login submitted:', formData);
-//     // Ajoutez ici la logique pour vérifier les informations de connexion
-//     navigate('/welcome'); // Rediriger vers la page "Welcome" après le succès
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    try {
+      // Envoie de la requête de connexion
+      const response = await axios.post('http://127.0.0.1:5010/api/auth/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      const { token } = response.data; // Récupération du token
+      console.log('Login successful, token:', token);
+
+      // Enregistrement du token dans le localStorage
+      localStorage.setItem('authToken', token);
+
+      // Redirection vers la page personnalisée après le succès
+      navigate('/home');
+    } catch (error) {
+      console.error('Login failed:', error);
+      setErrorMessage(error.response?.data?.message || 'Invalid email or password');
+    }
+  };
 
   return (
     <div className="login-container">
       <h1>Login</h1>
-      <form className="login-form">
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Name:</label>
+          <label htmlFor="email">Email:</label>
           <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
             required
-            placeholder="Enter your name"
+            placeholder="Enter your email"
           />
         </div>
         <div className="form-group">
@@ -47,7 +66,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
         </div>
-        <button type="submit" className="login-button" onClick={()=>navigate("/home")}>
+        <button type="submit" className="login-button">
           Login
         </button>
       </form>
